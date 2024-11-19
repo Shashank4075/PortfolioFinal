@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = $_POST['message'];
 
     // Your email address (where you want to receive the email)
-    $to = 'shashank.shekhar@email.com'; // Replace with your email address
+    $to = 'sshekha1@mail.yu.edu'; // Replace with your email address
     $subject = 'New Message from Recruiter';
     $headers = "From: " . $userEmail . "\r\n";
     $headers .= "Reply-To: " . $userEmail . "\r\n";
