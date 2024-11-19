@@ -182,17 +182,17 @@
             I am pursuing a Master’s in Data Analytics & Visualization and have an Advanced Machine Learning certification
           </p>
      
-             <!-- Button to trigger the pop-up -->
+              <!-- Button to trigger the pop-up -->
                 <button class="c-btn h-btn mt-3 py-3 px-5 rounded-pill" onclick="openEmailPopup()">
                   Hire Me
                 </button>
                 
-                <!-- The Modal -->
+                <!-- The Modal (Hidden initially) -->
                 <div id="emailModal" class="modal">
                   <div class="modal-content">
                     <span class="close" onclick="closeEmailPopup()">&times;</span>
                     <h2>Contact Me</h2>
-                    <form id="emailForm" action="mailto:sshekha1@mail.yu.edu" method="POST" enctype="multipart/form-data">
+                    <form action="https://formspree.io/f/your-endpoint-id" method="POST">
                       <label for="userEmail">Your Email:</label>
                       <input type="email" id="userEmail" name="userEmail" required>
                       
@@ -274,6 +274,9 @@
                     document.getElementById("emailModal").style.display = "none";
                   }
                 </script>
+                
+                                 
+                               
 
 
 
