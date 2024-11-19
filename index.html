@@ -95,15 +95,13 @@
             Hello! I Am <br /><span class="c-orange">Shashank Shekhar</span>
           </h2>
           <p class="text-muted">
-            I am skilled in data analytics, machine learning, and software engineering, with expertise in Python, SQL, and PostgreSQL.
-            I have optimized workflows, enhancing client satisfaction in a hospital information system.
-            I have implemented SVM and KNN models to improve prediction accuracy.
+            I am skilled in data analytics, machine learning, and software engineering, with expertise in Python, SQL, Machine Learning Algorithm and AWS .
             I am pursuing a Master’s in Data Analytics & Visualization and have an Advanced Machine Learning certification
           </p>
           <button class="c-btn h-btn mt-3 py-3 px-5 rounded-pill">
             Hire Me
           </button>
-          <a href="" class="link ms-4 d-none">See My Work</a>
+          <a href="https://github.com/Shashank4075" class="link ms-4 d-none">See My Work</a>
         </div>
         <div class="col-10 col-md-4 d-none d-md-block">
           <img src="asset/mypic.jpeg" class="img-fluid" alt="Profile Picture" />
@@ -136,7 +134,8 @@
               <p class="text-muted">
                 I am skilled in Python, C#, SQL.
               </p>
-              <a href="" class="link">Read More</a>
+              <a href="#" class="link" data-bs-toggle="modal" data-bs-target="#skillsProjectsModal">Read More</a>
+
             </div>
           </div>
         </div>
@@ -898,4 +897,36 @@
     <script src="js/script.js"></script>
     
   </body>
+  <!-- Skills & Projects Modal -->
+<div class="modal fade" id="skillsProjectsModal" tabindex="-1" aria-labelledby="skillsProjectsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="skillsProjectsModalLabel">My Skills & Projects</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h3>Skills</h3>
+        <ul>
+          <li><strong>Languages:</strong> Python, SQL, C#</li>
+          <li><strong>Machine Learning:</strong> scikit-learn, TensorFlow, SVM, Random Forest, etc.</li>
+          <li><strong>Visualization:</strong> Tableau, Matplotlib, Seaborn</li>
+          <li><strong>Data Analysis:</strong> NumPy, Pandas, Feature Engineering</li>
+          <li><strong>Databases:</strong> PostgreSQL, MSSQL, Oracle</li>
+        </ul>
+        <h3>Projects</h3>
+        <ul>
+          <li><strong>Disease Data Modeling:</strong> Dimensional models and ETL pipelines in PostgreSQL.</li>
+          <li><strong>E-commerce Purchase Prediction:</strong> KNN model with 97.13% accuracy.</li>
+          <li><strong>Heart Disease Prediction:</strong> Random Forest and SVM achieving 92% accuracy.</li>
+          <li><strong>NYPD Calls Analysis:</strong> Tableau dashboards revealing crime trends in NYC.</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </html>
