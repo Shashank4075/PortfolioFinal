@@ -183,6 +183,7 @@
           </p>
      
               
+    
       <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -230,10 +231,11 @@
 
         /* Style for the Hire Me button */
         .hire-me-btn {
-            display: block;
-            margin: 20px auto;
+            position: absolute;
+            top: 20px;
+            left: 20px;
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: orange; /* Updated color */
             color: white;
             border: none;
             border-radius: 5px;
@@ -242,7 +244,7 @@
         }
 
         .hire-me-btn:hover {
-            background-color: #0056b3;
+            background-color: darkorange; /* Updated hover color */
         }
     </style>
 </head>
@@ -266,11 +268,15 @@
 
     <script>
         // Toggle Contact Form Visibility
-        document.getElementById('contactButton').addEventListener('click', function () {
-            const contactForm = document.getElementById('contactForm');
-            contactForm.style.display = (contactForm.style.display === 'none' || contactForm.style.display === '') 
-                ? 'block' 
-                : 'none';
+        const hireMeButton = document.getElementById('contactButton');
+        const contactForm = document.getElementById('contactForm');
+
+        hireMeButton.addEventListener('click', function () {
+            if (contactForm.style.display === 'none' || contactForm.style.display === '') {
+                contactForm.style.display = 'block'; // Show the form
+            } else {
+                contactForm.style.display = 'none'; // Hide the form
+            }
         });
     </script>
 </body>
