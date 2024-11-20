@@ -184,7 +184,7 @@
      
               
     
-      <head>
+     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Me</title>
@@ -198,7 +198,7 @@
             background-color: #f4f4f4;
             border-radius: 10px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            display: none; /* Hidden initially */
+            display: none; /* Initially hidden */
         }
 
         .contact-form input, .contact-form textarea {
@@ -223,19 +223,13 @@
             background-color: #218838;
         }
 
-        .message {
-            font-size: 14px;
-            color: #888;
-            margin-top: 10px;
-        }
-
         /* Style for the Hire Me button */
         .hire-me-btn {
             position: absolute;
             
             left: 20px;
             padding: 10px 20px;
-            background-color: orange; /* Updated color */
+            background-color: orange;
             color: white;
             border: none;
             border-radius: 5px;
@@ -244,7 +238,7 @@
         }
 
         .hire-me-btn:hover {
-            background-color: darkorange; /* Updated hover color */
+            background-color: darkorange;
         }
     </style>
 </head>
@@ -267,15 +261,16 @@
     </div>
 
     <script>
-        // Toggle Contact Form Visibility
+        // Get the button and form elements
         const hireMeButton = document.getElementById('contactButton');
-        const contactForm = document.getElementById('contactForm');
+        const ContactForm = document.getElementById('contactForm');
 
+        // Add click event listener to the "Hire Me" button
         hireMeButton.addEventListener('click', function () {
-            if (contactForm.style.display === 'none' || contactForm.style.display === '') {
-                contactForm.style.display = 'block'; // Show the form
+            if (ContactForm.style.display === 'none' || ContactForm.style.display === '') {
+                ContactForm.style.display = 'block'; // Show the form
             } else {
-                contactForm.style.display = 'none'; // Hide the form
+                ContactForm.style.display = 'none'; // Hide the form
             }
         });
     </script>
