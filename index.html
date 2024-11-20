@@ -184,8 +184,7 @@
      
               
               <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Contact Me</title>
     <style>
         /* Style for the form */
@@ -247,26 +246,26 @@
     </style>
 </head>
 <body>
-    <!-- Hire Me Button -->
-    <button class="hire-me-btn" id="contactButton">Hire Me</button>
+    
 
     <!-- Contact Form -->
     <div class="contact-form" id="contactForm">
         <h2>Contact Me</h2>
-        <form action="https://formspree.io/f/mqaklbqo" method="POST">
-            <label for="userEmail">Your Email:</label>
-            <input type="email" id="userEmail" name="userEmail" required placeholder="Enter your email">
-
-            <label for="message">Your Message:</label>
-            <textarea id="message" name="message" rows="5" required placeholder="Enter your message"></textarea>
-
-            <button type="submit">Send Email</button>
-
-            <!-- Success Message -->
-            <p class="message" style="color: green; display: none;">Your message was sent successfully!</p>
-            <!-- Error Message -->
-            <p class="message" style="color: red; display: none;">Oops! Something went wrong. Please try again.</p>
-        </form>
+                        <form
+                  action="https://formspree.io/f/mqaklbqo"
+                  method="POST"
+                >
+                  <label>
+                    Your email:
+                    <input type="email" name="email">
+                  </label>
+                  <label>
+                    Your message:
+                    <textarea name="message"></textarea>
+                  </label>
+                  <!-- your other form fields go here -->
+                  <button type="submit">Send</button>
+</form>
     </div>
 
     <script>
