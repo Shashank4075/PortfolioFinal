@@ -189,11 +189,8 @@
      
 
        
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
     <title>Contact Me</title>
     <style>
         /* Contact form styling */
@@ -301,59 +298,10 @@
         Message sent successfully!
     </div>
 
-    <script>
-        // Get the elements
-        const hireMeButton = document.getElementById('hireMeButton');
-        const contactForm = document.getElementById('contactForm');
-        const overlay = document.getElementById('overlay');
-        const successMessage = document.getElementById('successMessage');
-        const contactFormInner = document.getElementById('contactFormInner');
+    
 
-        // Function to show the form
-        function showContactForm() {
-            contactForm.style.display = 'block';
-            overlay.style.display = 'block';
-        }
-
-        // Function to hide the form
-        function hideContactForm() {
-            contactForm.style.display = 'none';
-            overlay.style.display = 'none';
-        }
-
-        // Show form when "Hire Me" is clicked
-        hireMeButton.addEventListener('click', showContactForm);
-
-        // Hide form when the overlay is clicked
-        overlay.addEventListener('click', hideContactForm);
-
-        // Handle form submission
-        contactFormInner.addEventListener('submit', function (e) {
-            e.preventDefault(); // Prevent default submission
-
-            // Submit the form using fetch
-            fetch(contactFormInner.action, {
-                method: 'POST',
-                body: new FormData(contactFormInner),
-                headers: { 'Accept': 'application/json' }
-            }).then(response => {
-                if (response.ok) {
-                    successMessage.style.display = 'block'; // Show success message
-                    setTimeout(() => {
-                        successMessage.style.display = 'none'; // Hide success message
-                    }, 3000);
-                    hideContactForm(); // Hide form
-                    contactFormInner.reset(); // Reset form
-                } else {
-                    alert('Error sending message. Please try again.');
-                }
-            }).catch(() => {
-                alert('There was an error. Please try again.');
-            });
-        });
-    </script>
-</body>
-</html>
+        
+         
 
 
 
