@@ -185,28 +185,30 @@
               
     
 
- <!DOCTYPE html>
+ 
+     
+
+       
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Me</title>
     <style>
-        /* Compact Style for the form */
+        /* Contact form styling */
         .contact-form {
-            width: 90%;
-            max-width: 350px; /* Smaller width for compact design */
-            margin: 0 auto;
-            padding: 15px;
-            background-color: #f9f9f9;
+            width: 300px;
+            padding: 20px;
+            background: #fff;
             border-radius: 8px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            display: none; /* Initially hidden */
             z-index: 1000;
+            display: none; /* Initially hidden */
         }
 
         .contact-form input, .contact-form textarea {
@@ -224,28 +226,40 @@
             color: white;
             border: none;
             border-radius: 4px;
-            font-size: 14px;
+            cursor: pointer;
         }
 
         .contact-form button:hover {
             background-color: #218838;
         }
 
-        /* Style for the Hire Me button */
+        /* Hire Me button styling */
         .hire-me-btn {
             position: absolute;
+            top: 20px;
             left: 20px;
-            padding: 10px 15px;
+            padding: 10px 20px;
             background-color: orange;
             color: white;
             border: none;
             border-radius: 5px;
-            font-size: 16px;
             cursor: pointer;
         }
 
         .hire-me-btn:hover {
             background-color: darkorange;
+        }
+
+        /* Overlay styling */
+        .overlay {
+            display: none; /* Initially hidden */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
         }
 
         /* Success message styling */
@@ -263,98 +277,84 @@
             z-index: 1001;
             text-align: center;
         }
-
-        /* Overlay for form */
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
-            z-index: 999;
-        }
     </style>
 </head>
 <body>
-    <!-- Overlay for the popup -->
-    <div class="overlay" id="formOverlay"></div>
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
 
     <!-- Hire Me Button -->
-    <button class="hire-me-btn" id="contactButton">Hire Me</button>
+    <button class="hire-me-btn" id="hireMeButton">Hire Me</button>
 
     <!-- Contact Form -->
     <div class="contact-form" id="contactForm">
         <h3>Contact Me</h3>
-        <form id="formSpreeForm" action="https://formspree.io/f/mqaklbqo" method="POST">
-            <label for="userEmail">Your Email:</label>
-            <input type="email" id="userEmail" name="email" required placeholder="Enter your email">
-
-            <label for="message">Your Message:</label>
-            <textarea id="message" name="message" rows="4" required placeholder="Enter your message"></textarea>
-
-            <button type="submit">Send Email</button>
+        <form id="contactFormInner" action="https://formspree.io/f/mqaklbqo" method="POST">
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+            <button type="submit">Send</button>
         </form>
     </div>
 
     <!-- Success Message -->
     <div class="success-message" id="successMessage">
-        Your message has been sent successfully!
+        Message sent successfully!
     </div>
 
     <script>
-        // Get the button, form, overlay, and success message elements
-        const hireMeButton = document.getElementById('contactButton');
+        // Get the elements
+        const hireMeButton = document.getElementById('hireMeButton');
         const contactForm = document.getElementById('contactForm');
-        const formOverlay = document.getElementById('formOverlay');
+        const overlay = document.getElementById('overlay');
         const successMessage = document.getElementById('successMessage');
-        const formSpreeForm = document.getElementById('formSpreeForm');
+        const contactFormInner = document.getElementById('contactFormInner');
 
-        // Show the contact form as a popup
-        hireMeButton.addEventListener('click', function () {
-            contactForm.style.display = 'block'; // Show the form
-            formOverlay.style.display = 'block'; // Show the overlay
-        });
+        // Function to show the form
+        function showContactForm() {
+            contactForm.style.display = 'block';
+            overlay.style.display = 'block';
+        }
+
+        // Function to hide the form
+        function hideContactForm() {
+            contactForm.style.display = 'none';
+            overlay.style.display = 'none';
+        }
+
+        // Show form when "Hire Me" is clicked
+        hireMeButton.addEventListener('click', showContactForm);
+
+        // Hide form when the overlay is clicked
+        overlay.addEventListener('click', hideContactForm);
 
         // Handle form submission
-        formSpreeForm.addEventListener('submit', function (event) {
-            // Prevent default form submission
-            event.preventDefault();
+        contactFormInner.addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent default submission
 
-            // Submit form to Formspree
-            fetch(formSpreeForm.action, {
-                method: "POST",
-                body: new FormData(formSpreeForm),
-                headers: {
-                    'Accept': 'application/json'
-                }
+            // Submit the form using fetch
+            fetch(contactFormInner.action, {
+                method: 'POST',
+                body: new FormData(contactFormInner),
+                headers: { 'Accept': 'application/json' }
             }).then(response => {
                 if (response.ok) {
                     successMessage.style.display = 'block'; // Show success message
                     setTimeout(() => {
                         successMessage.style.display = 'none'; // Hide success message
                     }, 3000);
-
-                    contactForm.style.display = 'none'; // Hide the form
-                    formOverlay.style.display = 'none'; // Hide the overlay
-                    formSpreeForm.reset(); // Reset the form
+                    hideContactForm(); // Hide form
+                    contactFormInner.reset(); // Reset form
                 } else {
-                    alert('There was an issue sending your message. Please try again.');
+                    alert('Error sending message. Please try again.');
                 }
-            }).catch(error => {
-                alert('There was an error submitting the form. Please try again later.');
+            }).catch(() => {
+                alert('There was an error. Please try again.');
             });
-        });
-
-        // Close form popup when overlay is clicked
-        formOverlay.addEventListener('click', function () {
-            contactForm.style.display = 'none'; // Hide the form
-            formOverlay.style.display = 'none'; // Hide the overlay
         });
     </script>
 </body>
 </html>
+
 
 
 
