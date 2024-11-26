@@ -185,50 +185,46 @@
               
     
 
-          <head>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Me</title>
     <style>
-        /* Style for the form popup */
-        .contact-form-container {
-            display: none; /* Initially hidden */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Dimmed background */
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
+        /* Compact Style for the form */
         .contact-form {
-            width: 100%;
-            max-width: 500px;
-            padding: 20px;
-            background-color: #f4f4f4;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 350px; /* Smaller width for compact design */
+            margin: 0 auto;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none; /* Initially hidden */
+            z-index: 1000;
         }
 
         .contact-form input, .contact-form textarea {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
+            padding: 8px;
+            margin-bottom: 10px;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 4px;
         }
 
         .contact-form button {
             width: 100%;
-            padding: 15px;
+            padding: 10px;
             background-color: #28a745;
             color: white;
             border: none;
-            border-radius: 5px;
-            font-size: 16px;
+            border-radius: 4px;
+            font-size: 14px;
         }
 
         .contact-form button:hover {
@@ -239,12 +235,12 @@
         .hire-me-btn {
             position: absolute;
             left: 20px;
-            padding: 10px 20px;
+            padding: 10px 15px;
             background-color: orange;
             color: white;
             border: none;
             border-radius: 5px;
-            font-size: 18px;
+            font-size: 16px;
             cursor: pointer;
         }
 
@@ -252,78 +248,114 @@
             background-color: darkorange;
         }
 
-        /* Success message */
+        /* Success message styling */
         .success-message {
             display: none;
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            z-index: 1001;
             text-align: center;
-            font-size: 16px;
-            color: green;
-            margin-top: 10px;
+        }
+
+        /* Overlay for form */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            z-index: 999;
         }
     </style>
 </head>
 <body>
+    <!-- Overlay for the popup -->
+    <div class="overlay" id="formOverlay"></div>
+
     <!-- Hire Me Button -->
     <button class="hire-me-btn" id="contactButton">Hire Me</button>
 
-    <!-- Contact Form Popup -->
-    <div class="contact-form-container" id="contactFormContainer">
-        <div class="contact-form">
-            <h2>Contact Me</h2>
-            <form id="contactForm">
-                <label for="userEmail">Your Email:</label>
-                <input type="email" id="userEmail" name="email" required placeholder="Enter your email">
+    <!-- Contact Form -->
+    <div class="contact-form" id="contactForm">
+        <h3>Contact Me</h3>
+        <form id="formSpreeForm" action="https://formspree.io/f/mqaklbqo" method="POST">
+            <label for="userEmail">Your Email:</label>
+            <input type="email" id="userEmail" name="email" required placeholder="Enter your email">
 
-                <label for="message">Your Message:</label>
-                <textarea id="message" name="message" rows="5" required placeholder="Enter your message"></textarea>
+            <label for="message">Your Message:</label>
+            <textarea id="message" name="message" rows="4" required placeholder="Enter your message"></textarea>
 
-                <button type="submit">Send Email</button>
-            </form>
-            <p class="success-message" id="successMessage">Your message was sent successfully!</p>
-        </div>
+            <button type="submit">Send Email</button>
+        </form>
+    </div>
+
+    <!-- Success Message -->
+    <div class="success-message" id="successMessage">
+        Your message has been sent successfully!
     </div>
 
     <script>
-        // Get references to elements
+        // Get the button, form, overlay, and success message elements
         const hireMeButton = document.getElementById('contactButton');
-        const contactFormContainer = document.getElementById('contactFormContainer');
         const contactForm = document.getElementById('contactForm');
+        const formOverlay = document.getElementById('formOverlay');
         const successMessage = document.getElementById('successMessage');
+        const formSpreeForm = document.getElementById('formSpreeForm');
 
-        // Show the form popup on clicking "Hire Me"
+        // Show the contact form as a popup
         hireMeButton.addEventListener('click', function () {
-            contactFormContainer.style.display = 'flex'; // Show the popup
+            contactForm.style.display = 'block'; // Show the form
+            formOverlay.style.display = 'block'; // Show the overlay
         });
 
         // Handle form submission
-        contactForm.addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent page reload
+        formSpreeForm.addEventListener('submit', function (event) {
+            // Prevent default form submission
+            event.preventDefault();
 
-            // Simulate form submission to an endpoint
-            const userEmail = document.getElementById('userEmail').value;
-            const message = document.getElementById('message').value;
-
-            if (userEmail && message) {
-                // Simulate email sending (replace with real endpoint call if needed)
-                setTimeout(() => {
+            // Submit form to Formspree
+            fetch(formSpreeForm.action, {
+                method: "POST",
+                body: new FormData(formSpreeForm),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
                     successMessage.style.display = 'block'; // Show success message
                     setTimeout(() => {
-                        successMessage.style.display = 'none';
-                        contactFormContainer.style.display = 'none'; // Close popup
-                        contactForm.reset(); // Reset form
-                    }, 2000); // Hide popup after 2 seconds
-                }, 500); // Simulated delay
-            }
+                        successMessage.style.display = 'none'; // Hide success message
+                    }, 3000);
+
+                    contactForm.style.display = 'none'; // Hide the form
+                    formOverlay.style.display = 'none'; // Hide the overlay
+                    formSpreeForm.reset(); // Reset the form
+                } else {
+                    alert('There was an issue sending your message. Please try again.');
+                }
+            }).catch(error => {
+                alert('There was an error submitting the form. Please try again later.');
+            });
         });
 
-        // Close popup when clicking outside the form
-        contactFormContainer.addEventListener('click', function (event) {
-            if (event.target === contactFormContainer) {
-                contactFormContainer.style.display = 'none'; // Hide popup
-            }
+        // Close form popup when overlay is clicked
+        formOverlay.addEventListener('click', function () {
+            contactForm.style.display = 'none'; // Hide the form
+            formOverlay.style.display = 'none'; // Hide the overlay
         });
     </script>
 </body>
+</html>
+
 
                   
                                   
